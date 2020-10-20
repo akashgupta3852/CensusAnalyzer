@@ -69,4 +69,14 @@ public class CensusAnalyserTest {
 			Assert.assertEquals(CensusAnalyserException.ExceptionType.ERROR_FROM_CSV_FILE, e.type);
 		}
 	}
+	
+	@Test
+	public void givenIndianStateCodeCSVFile_ReturnsCorrectRecords() {
+		try {
+			CensusAnalyser censusAnalyser = new CensusAnalyser();
+			int numOfRecords = censusAnalyser.loadIndiaStateCode(INDIA_STATE_CODE_CSV_FILE_PATH);
+			Assert.assertEquals(37, numOfRecords);
+		} catch (CensusAnalyserException e) {
+		}
+	}
 }
