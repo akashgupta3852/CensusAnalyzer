@@ -46,7 +46,7 @@ public class CensusAnalyserTest {
 			exceptionRule.expect(CensusAnalyserException.class);
 			censusAnalyser.loadIndiaCensusData(INCORRECT_TYPE_INDIA_CENSUS_FILE);
 		} catch (CensusAnalyserException e) {
-			Assert.assertEquals(CensusAnalyserException.ExceptionType.ERROR_FROM_CSV_FILE, e.type);
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.SOME_FILE_ISSUE, e.type);
 		}
 	}
 
@@ -58,7 +58,7 @@ public class CensusAnalyserTest {
 			exceptionRule.expect(CensusAnalyserException.class);
 			censusAnalyser.loadIndiaCensusData(WRONG_DELIMITER_IN_INDIA_CENSUS_CSV_FILE);
 		} catch (CensusAnalyserException e) {
-			Assert.assertEquals(CensusAnalyserException.ExceptionType.ERROR_FROM_CSV_FILE, e.type);
+			Assert.assertEquals("UNABLE_TO_PARSE", e.exceptionType);
 		}
 	}
 
@@ -70,7 +70,7 @@ public class CensusAnalyserTest {
 			exceptionRule.expect(CensusAnalyserException.class);
 			censusAnalyser.loadIndiaCensusData(WITHOUT_HEADER_IN_INDIA_CENSUS_CSV_FILE);
 		} catch (CensusAnalyserException e) {
-			Assert.assertEquals(CensusAnalyserException.ExceptionType.ERROR_FROM_CSV_FILE, e.type);
+			Assert.assertEquals("UNABLE_TO_PARSE", e.exceptionType);
 		}
 	}
 
@@ -92,7 +92,7 @@ public class CensusAnalyserTest {
 			exceptionRule.expect(CensusAnalyserException.class);
 			censusAnalyser.loadIndiaStateCode(WRONG_CSV_FILE_PATH);
 		} catch (CensusAnalyserException e) {
-			Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.CODE_FILE_PROBLEM, e.type);
 		}
 	}
 
@@ -104,7 +104,7 @@ public class CensusAnalyserTest {
 			exceptionRule.expect(CensusAnalyserException.class);
 			censusAnalyser.loadIndiaStateCode(INCORRECT_TYPE_STATE_CODE_FILE);
 		} catch (CensusAnalyserException e) {
-			Assert.assertEquals(CensusAnalyserException.ExceptionType.ERROR_FROM_CSV_FILE, e.type);
+			Assert.assertEquals(CensusAnalyserException.ExceptionType.SOME_FILE_ISSUE, e.type);
 		}
 	}
 
@@ -116,7 +116,7 @@ public class CensusAnalyserTest {
 			exceptionRule.expect(CensusAnalyserException.class);
 			censusAnalyser.loadIndiaStateCode(WRONG_DELIMITER_IN_STATE_CODE_FILE);
 		} catch (CensusAnalyserException e) {
-			Assert.assertEquals(CensusAnalyserException.ExceptionType.ERROR_FROM_CSV_FILE, e.type);
+			Assert.assertEquals("UNABLE_TO_PARSE", e.exceptionType);
 		}
 	}
 
@@ -128,7 +128,7 @@ public class CensusAnalyserTest {
 			exceptionRule.expect(CensusAnalyserException.class);
 			censusAnalyser.loadIndiaStateCode(WITHOUT_HEADER_IN_STATE_CODE_FILE);
 		} catch (CensusAnalyserException e) {
-			Assert.assertEquals(CensusAnalyserException.ExceptionType.ERROR_FROM_CSV_FILE, e.type);
+			Assert.assertEquals("UNABLE_TO_PARSE", e.exceptionType);
 		}
 	}
 }

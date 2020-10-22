@@ -1,12 +1,14 @@
 package censusanalyser;
 
 public class CensusAnalyserException extends Exception {
+	private static final long serialVersionUID = 1L;
 
 	enum ExceptionType {
-		CENSUS_FILE_PROBLEM, ERROR_FROM_CSV_FILE
+		CENSUS_FILE_PROBLEM, CODE_FILE_PROBLEM, SOME_FILE_ISSUE
 	}
 
 	ExceptionType type;
+	String exceptionType;
 
 	public CensusAnalyserException(String message, ExceptionType type) {
 		super(message);
@@ -16,5 +18,10 @@ public class CensusAnalyserException extends Exception {
 	public CensusAnalyserException(String message, ExceptionType type, Throwable cause) {
 		super(message, cause);
 		this.type = type;
+	}
+
+	public CensusAnalyserException(String message, String exceptionType) {
+		super(message);
+		this.exceptionType = exceptionType;
 	}
 }
