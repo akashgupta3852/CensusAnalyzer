@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.stream.StreamSupport;
 
+import censusbuilder.*;
+
 public class CensusAnalyser {
 
 	@SuppressWarnings("unchecked")
