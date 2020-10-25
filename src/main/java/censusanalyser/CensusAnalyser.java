@@ -140,4 +140,12 @@ public class CensusAnalyser {
 		if (censusCSVList == null || censusCSVList.size() == 0)
 			throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
 	}
+
+	public String getPopulationDensityWiseSortedCensusData() throws CensusAnalyserException {
+		checkCSVListNullOrEmpty(censusCSVList);
+		Comparator<IndiaCensusCSV> censusComparator = Comparator.comparing((census -> census.densityPerSqKm));
+		this.descendingOrderSort(censusComparator, censusCSVList);
+		String sortedPopulationDensityCensusJson = new Gson().toJson(censusCSVList);
+		return sortedPopulationDensityCensusJson;
+	}
 }
