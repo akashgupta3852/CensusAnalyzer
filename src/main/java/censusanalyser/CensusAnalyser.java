@@ -51,4 +51,30 @@ public class CensusAnalyser {
 					CensusAnalyserException.ExceptionType.SOME_FILE_ISSUE);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public int loadIndiaCensusDataUsingCommon(String csvFilePath) throws CensusAnalyserException {
+        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
+            ICSVBuilder<IndiaCensusCSV> csvBuilder = CSVBuilderFactory.createCommonsCSVBuilder();
+            Iterator<IndiaCensusCSV> censusDataCSVIterator = csvBuilder.getCSVFileIterator(reader, IndiaCensusCSV.class);
+            return this.getCount(censusDataCSVIterator);
+        } catch (IOException e) {
+        	throw new CensusAnalyserException(e.getMessage(),
+					CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+        } catch (CSVBuilderException e) {
+        	throw new CensusAnalyserException(e.getMessage(), e.type.name());
+        }
+    }
+	
+	@SuppressWarnings("unchecked")
+	public int loadIndiaStateCodeUsingCommon(String csvFilePath) throws CensusAnalyserException {
+        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
+            ICSVBuilder<StateCodeCSV> csvBuilder = CSVBuilderFactory.createCommonsCSVBuilder();
+            Iterator<StateCodeCSV> stateCodeCSVIterator = csvBuilder.getCSVFileIterator(reader, StateCodeCSV.class);
+            return this.getCount(stateCodeCSVIterator);
+        } catch (IOException e) {
+        	throw new CensusAnalyserException(e.getMessage(), CensusAnalyserException.ExceptionType.CODE_FILE_PROBLEM);
+        } catch (CSVBuilderException e) {
+        	throw new CensusAnalyserException(e.getMessage(), e.type.name());
+        }
+    }
 }

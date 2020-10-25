@@ -131,4 +131,24 @@ public class CensusAnalyserTest {
 			Assert.assertEquals("UNABLE_TO_PARSE", e.exceptionType);
 		}
 	}
+
+	@Test
+	public void givenIndianCensusCSVFile_UsingCommonCSV_ShouldReturnExactCount() {
+		try {
+			CensusAnalyser censusAnalyser = new CensusAnalyser();
+			int numOfRecords = censusAnalyser.loadIndiaCensusDataUsingCommon(INDIA_CENSUS_CSV_FILE_PATH);
+			Assert.assertEquals(29, numOfRecords);
+		} catch (CensusAnalyserException e) {
+		}
+	}
+
+	@Test
+	public void givenIndianStateCodeCSVFile_usingCommonCSV_ShouldReturnExactCount() {
+		try {
+			CensusAnalyser censusAnalyser = new CensusAnalyser();
+			int numOfRecords = censusAnalyser.loadIndiaStateCodeUsingCommon(INDIA_STATE_CODE_CSV_FILE_PATH);
+			Assert.assertEquals(37, numOfRecords);
+		} catch (CensusAnalyserException e) {
+		}
+	}
 }
